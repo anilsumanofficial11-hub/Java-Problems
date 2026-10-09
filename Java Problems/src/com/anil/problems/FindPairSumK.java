@@ -1,8 +1,6 @@
 package com.anil.problems;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 /*
@@ -41,14 +39,28 @@ public class FindPairSumK {
     public static boolean findPair1(int[] arr, int k){
         Set<Integer> set = new HashSet<>();
         for(int i=0 ; i< arr.length ; i++){
-            if(set.contains(arr[i])){
+            if(set.contains(k-arr[i])){
                 return true;
             }else {
-                set.add(k - arr[i]);
+                set.add(arr[i]);
             }
         }
         return false;
     }
+
+    public static boolean findPair3(int[] arr, int k){
+        Map<Integer, Boolean> visited= new HashMap<>();
+
+       for(int i=0 ; i< arr.length ; i++){
+            if(visited.containsKey(k - arr[i])) return true;
+            else
+                visited.put(arr[i], true);
+
+        }
+        System.out.println(visited);
+        return false;
+    }
+
 
     //O(nlogn)
 
@@ -68,9 +80,10 @@ public class FindPairSumK {
 
     public static void main(String[] args) {
         int[] arr = new int[]{4, 5, 1, -3, 6};
-        int k =8;
+        int k =10;
 //        System.out.println(findPair1(arr,k));
-        System.out.println(findPair2(arr,k));
+//        System.out.println(findPair2(arr,k));
+        System.out.println(findPair3(arr,k));
 
 
 
